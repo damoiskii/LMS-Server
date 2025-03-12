@@ -1,6 +1,8 @@
 package com.moiskii.lmsserver.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -21,10 +23,12 @@ public class LateFee {
     private Double amount;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @DateTimeFormat(pattern = "MM-dd-yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     @Column(name = "created_on", nullable = false)
     private Date createdOn;
 
+    @JsonIgnore  // Prevent circular reference
     @OneToOne(cascade = {CascadeType.ALL}) // {CascadeType.MERGE}
     private Book book;
 
