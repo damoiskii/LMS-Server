@@ -8,7 +8,6 @@ import com.moiskii.lmsserver.model.Book;
 import com.moiskii.lmsserver.service.BookServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
