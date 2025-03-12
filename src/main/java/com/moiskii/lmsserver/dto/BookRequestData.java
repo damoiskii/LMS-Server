@@ -1,8 +1,13 @@
 package com.moiskii.lmsserver.dto;
 
 import com.moiskii.lmsserver.model.Book;
+import com.moiskii.lmsserver.model.LateFee;
+import com.moiskii.lmsserver.model.Loan;
+import com.moiskii.lmsserver.model.Member;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
+
+import java.util.Date;
 
 @Data
 public class BookRequestData {
@@ -21,7 +26,10 @@ public class BookRequestData {
     @NotBlank(message = "Book accession number ID is required!")
     private String accessionNumber;
 
+    private Loan loan;
+    private LateFee lateFee;
+
     public Book build(){
-        return new Book(isbn, title, author, status, accessionNumber);
+         return new Book(isbn, title, author, status, accessionNumber, loan, lateFee);
     }
 }

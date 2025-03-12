@@ -1,6 +1,8 @@
 package com.moiskii.lmsserver.dto;
 
 import com.moiskii.lmsserver.model.Book;
+import com.moiskii.lmsserver.model.LateFee;
+import com.moiskii.lmsserver.model.Loan;
 import lombok.Data;
 
 import java.io.Serial;
@@ -16,6 +18,9 @@ public class BookResponseData implements Serializable {
     private String author;
     private String status;
     private String accessionNumber;
+    private Loan loan;
+    private LateFee lateFee;
+
     private String message;
 
     public void copy(Book book){
@@ -24,5 +29,7 @@ public class BookResponseData implements Serializable {
         author = book.getAuthor();
         status = book.getStatus();
         accessionNumber = book.getAccessionNumber();
+        loan  = book.getLoan();
+        lateFee = book.getLateFee();
     }
 }

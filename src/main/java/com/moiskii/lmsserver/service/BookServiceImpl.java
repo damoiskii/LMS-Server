@@ -3,6 +3,8 @@ package com.moiskii.lmsserver.service;
 import com.moiskii.lmsserver.exception.BookFoundException;
 import com.moiskii.lmsserver.exception.BookNotFoundException;
 import com.moiskii.lmsserver.model.Book;
+import com.moiskii.lmsserver.model.LateFee;
+import com.moiskii.lmsserver.model.Loan;
 import com.moiskii.lmsserver.repository.BookRepository;
 import com.moiskii.lmsserver.util.FakerUtil;
 import lombok.RequiredArgsConstructor;
@@ -33,11 +35,26 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book update(String isbn, Book book) throws BookNotFoundException {
         // If the book doesn't exist then throw error
-        if(bookRepository.findById(book.getIsbn()).isEmpty()){
-            throw new BookNotFoundException("Book not found!");
+        Book existingBook = bookRepository.findById(isbn).orElseThrow(() -> new BookNotFoundException("Book with ISBN " + isbn + " not found"));
+
+        existingBook.setTitle(book.getTitle());
+        existingBook.setAuthor(book.getAuthor());
+        existingBook.setStatus(book.getStatus());
+        existingBook.setAccessionNumber(book.getAccessionNumber());
+
+        if (book.getLoan() != null) {
+            Loan loan = book.getLoan();
+            loan.setBook(existingBook);
+            existingBook.setLoan(loan);
         }
 
-        return bookRepository.saveAndFlush(book);
+        if (book.getLateFee() != null) {
+            LateFee lateFee = book.getLateFee();
+            lateFee.setBook(existingBook);
+            existingBook.setLateFee(lateFee);
+        }
+
+        return bookRepository.saveAndFlush(existingBook);
     }
 
     @Override
