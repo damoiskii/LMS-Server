@@ -32,17 +32,26 @@ Accept: application/json
 
 
 ### PUT: Update Book
-PUT http://localhost:8080/api/v1/books/1
+PUT http://localhost:8080/api/v1/books/update/9791964934357
 Content-Type: application/json
 Accept: application/json
 
 {
-  "isbn": "978-3-16-148410-0",
-  "title": "Updated Book Title",
-  "author": "New Author",
+  "isbn": "9791964934357",
+  "title": "Edna O'Brien",
+  "author": "Thaddeus Moen",
   "status": "Available",
-  "accessionNumber": "123456"
+  "accessionNumber": "ACC-0003-O1276",
+  "loan": {
+    "id": 1,
+    "borrowDate": "03-11-2025 10:00:00",
+    "returnDate": "10-11-2025 10:00:00",
+    "member": null,
+    "book": null
+  },
+  "lateFee": null
 }
+
 ###
 
 
