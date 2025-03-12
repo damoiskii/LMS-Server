@@ -2,10 +2,7 @@ package com.moiskii.lmsserver.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,4 +25,10 @@ public class Book {
 
     @Column(name = "accession_number", nullable = false, unique = true)
     private String accessionNumber;
+
+    @OneToOne(mappedBy = "book", cascade = {CascadeType.ALL})
+    private Loan loan;
+
+    @OneToOne(mappedBy = "book", cascade = {CascadeType.ALL})
+    private LateFee lateFee;
 }
