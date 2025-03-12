@@ -1,0 +1,52 @@
+### GET: All Books
+GET http://localhost:8080/api/v1/books/
+Accept: application/json
+###
+
+
+### POST: Add Book
+POST http://localhost:8080/api/v1/books/add
+Content-Type: application/json
+Accept: application/json
+
+{
+  "isbn": "111-236-857",
+  "accessionNumber": "221254",
+  "title": "Today is Good!",
+  "author": "John Tom",
+  "status": "Available"
+}
+###
+
+
+### DELETE: Delete Book
+DELETE http://localhost:8080/api/v1/books/1
+Accept: application/json
+###
+
+
+### DELETE: Delete All Books
+DELETE http://localhost:8080/api/v1/books/delete-all
+Accept: application/json
+###
+
+
+### PUT: Update Book
+PUT http://localhost:8080/api/v1/books/1
+Content-Type: application/json
+Accept: application/json
+
+{
+  "isbn": "978-3-16-148410-0",
+  "title": "Updated Book Title",
+  "author": "New Author",
+  "status": "Available",
+  "accessionNumber": "123456"
+}
+###
+
+
+### GET: Async Task
+GET http://localhost:8080/api/v1/books/generate/20
+Accept: application/json
+
