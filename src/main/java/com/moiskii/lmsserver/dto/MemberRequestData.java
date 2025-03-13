@@ -1,7 +1,9 @@
 package com.moiskii.lmsserver.dto;
 
 import com.moiskii.lmsserver.model.Member;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -12,9 +14,11 @@ public class MemberRequestData {
     @NotBlank(message = "Member username is required!")
     private String username;
 
+    @Email(message = "Please enter a valid email address!")
     @NotBlank(message = "Member email is required!")
     private String email;
 
+    @Size(min = 6, message = "Password must be at least 6 characters long!")
     @NotBlank(message = "Member password is required!")
     private String password;
 

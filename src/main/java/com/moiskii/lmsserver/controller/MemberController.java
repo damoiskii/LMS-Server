@@ -6,6 +6,7 @@ import com.moiskii.lmsserver.exception.MemberFoundException;
 import com.moiskii.lmsserver.exception.MemberNotFoundException;
 import com.moiskii.lmsserver.model.Member;
 import com.moiskii.lmsserver.service.MemberService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +25,7 @@ public class MemberController {
     }
 
     @GetMapping({"/{id}", "/{id}/"})
-    public ResponseEntity<MemberResponseData> getBook(@PathVariable Long id) {
+    public ResponseEntity<MemberResponseData> getMember(@PathVariable Long id) {
         MemberResponseData response = new MemberResponseData();
 
         try {
@@ -38,7 +39,7 @@ public class MemberController {
     }
 
     @PostMapping({"/add", "/add/"})
-    public ResponseEntity<MemberResponseData> addMember(@RequestBody MemberRequestData request) {
+    public ResponseEntity<MemberResponseData> addMember(@Valid @RequestBody MemberRequestData request) {
         MemberResponseData response = new MemberResponseData();
 
         try {
@@ -52,7 +53,7 @@ public class MemberController {
     }
 
     @PutMapping({"/update/{id}", "/update/{id}/"})
-    public ResponseEntity<MemberResponseData> updateMember(@PathVariable Long id, @RequestBody MemberRequestData request) {
+    public ResponseEntity<MemberResponseData> updateMember(@PathVariable Long id, @Valid @RequestBody MemberRequestData request) {
         MemberResponseData response = new MemberResponseData();
 
         try {
@@ -89,12 +90,12 @@ public class MemberController {
     }
 
     @GetMapping({"/filter-type/{type}", "/filter-type/{type}/"})
-    public ResponseEntity<List<Member>> filterAllByType(@PathVariable String type) {
+    public ResponseEntity<List<Member>> filterAllMembersByType(@PathVariable String type) {
         return ResponseEntity.ok().body(memberService.findAllByType(type));
     }
 
     @GetMapping({"/filter-allowance/{allowance}", "/filter-allowance/{allowance}/"})
-    public ResponseEntity<List<Member>> filterAllByAllowance(@PathVariable String allowance) {
+    public ResponseEntity<List<Member>> filterAllMembersByAllowance(@PathVariable String allowance) {
         return ResponseEntity.ok().body(memberService.findAllByAllowance(allowance));
     }
 }

@@ -6,6 +6,7 @@ import com.moiskii.lmsserver.exception.BookFoundException;
 import com.moiskii.lmsserver.exception.BookNotFoundException;
 import com.moiskii.lmsserver.model.Book;
 import com.moiskii.lmsserver.service.BookServiceImpl;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +40,7 @@ public class BookController {
     }
 
     @PostMapping({"/add", "/add/"})
-    public ResponseEntity<BookResponseData> addBook(@RequestBody BookRequestData request) {
+    public ResponseEntity<BookResponseData> addBook(@Valid @RequestBody BookRequestData request) {
         BookResponseData response = new BookResponseData();
 
         try {
@@ -53,7 +54,7 @@ public class BookController {
     }
 
     @PutMapping({"/update/{isbn}", "/update/{isbn}/"})
-    public ResponseEntity<BookResponseData> updateBook(@PathVariable String isbn, @RequestBody BookRequestData request) {
+    public ResponseEntity<BookResponseData> updateBook(@PathVariable String isbn, @Valid @RequestBody BookRequestData request) {
         BookResponseData response = new BookResponseData();
 
         try {
