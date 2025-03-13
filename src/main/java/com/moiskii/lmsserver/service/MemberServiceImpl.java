@@ -66,25 +66,15 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public Member delete(Long id) throws MemberNotFoundException {
-        Optional<Member> memberOptional = memberRepository.findById(id);
+        Member member = memberRepository.findById(id).orElseThrow(() -> new MemberNotFoundException("Member with id '" + id + "' not found!"));
 
-        // If the member doesn't exist then throw error
-        if(memberOptional.isEmpty()){
-            throw new MemberNotFoundException("Member with id '" + id + "' not found!");
-        }
-
-        memberRepository.delete(memberOptional.get());
-        return memberOptional.get();
+        memberRepository.delete(member);
+        return member;
     }
 
     @Override
     public void delete(Member member) throws MemberNotFoundException {
-        // If the member doesn't exist then throw error
-        if(memberRepository.findById(member.getId()).isEmpty()){
-            throw new MemberNotFoundException("Member with id '" + member.getId() + "' not found!");
-        }
-
-        memberRepository.delete(member);
+        memberRepository.delete(memberRepository.findById(member.getId()).orElseThrow(() -> new MemberNotFoundException("Member with id '" + member.getId() + "' not found!")));
     }
 
     @Override

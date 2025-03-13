@@ -64,25 +64,15 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book delete(String isbn) throws BookNotFoundException {
-        Optional<Book> bookOptional = bookRepository.findById(isbn);
+        Book book = bookRepository.findById(isbn).orElseThrow(() -> new BookNotFoundException("Book with isbn '" + isbn + "' not found!"));
 
-        // If the book doesn't exist then throw error
-        if(bookOptional.isEmpty()){
-            throw new BookNotFoundException("Book with isbn '" + isbn + "' not found!");
-        }
-
-        bookRepository.delete(bookOptional.get());
-        return bookOptional.get();
+        bookRepository.delete(book);
+        return book;
     }
 
     @Override
     public void delete(Book book) throws BookNotFoundException {
-        // If the book doesn't exist then throw error
-        if(bookRepository.findById(book.getIsbn()).isEmpty()){
-            throw new BookNotFoundException("Book with isbn '" + book.getIsbn() + "' not found!");
-        }
-
-        bookRepository.delete(book);
+        bookRepository.delete(bookRepository.findById(book.getIsbn()).orElseThrow(() -> new BookNotFoundException("Book with isbn '" + book.getIsbn() + "' not found!")));
     }
 
     @Override
@@ -92,14 +82,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public Book findBook(String isbn) throws BookNotFoundException {
-        Optional<Book> bookOptional = bookRepository.findById(isbn);
-
-        // If the book doesn't exist then throw error
-        if(bookOptional.isEmpty()){
-            throw new BookNotFoundException("Book with isbn '" + isbn + "' not found!");
-        }
-
-        return bookOptional.get();
+        return bookRepository.findById(isbn).orElseThrow(() -> new BookNotFoundException("Book with isbn '" + isbn + "' not found!"));
     }
 
     @Override
