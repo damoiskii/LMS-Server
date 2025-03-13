@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -23,13 +23,13 @@ public class Loan {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     @Column(name = "borrowDate", nullable = false)
-    private Date borrowDate;
+    private LocalDateTime borrowDate;
 
     @Temporal(TemporalType.TIMESTAMP)
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     @Column(name = "returnDate", nullable = false)
-    private Date returnDate;
+    private LocalDateTime returnDate;
 
     @JsonIgnore  // Prevent circular reference
     @OneToOne(cascade = {CascadeType.ALL}) // {CascadeType.MERGE}
