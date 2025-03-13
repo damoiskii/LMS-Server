@@ -23,7 +23,7 @@ public class BookRequestData {
     @NotBlank(message = "Book status is required!")
     private String status;
 
-    @NotBlank(message = "Book accession number ID is required!")
+    @NotBlank(message = "Book accession number is required!")
     private String accessionNumber;
 
     private Loan loan;

@@ -14,6 +14,4 @@ public interface BookService {
     void deleteAll();
     Book findBook(String isbn) throws BookNotFoundException;
     List<Book> findAll();
-
-
 }

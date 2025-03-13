@@ -5,7 +5,6 @@ import com.moiskii.lmsserver.dto.BookResponseData;
 import com.moiskii.lmsserver.exception.BookFoundException;
 import com.moiskii.lmsserver.exception.BookNotFoundException;
 import com.moiskii.lmsserver.model.Book;
-import com.moiskii.lmsserver.model.Loan;
 import com.moiskii.lmsserver.service.BookServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -66,7 +65,7 @@ public class BookController {
             response.copy(bookService.update(isbn, request.build()));
             response.setMessage("Book updated successfully!");
         } catch (BookNotFoundException e) {
-            response.setMessage("Error updating new book: " + e.getMessage());
+            response.setMessage("Error updating book: " + e.getMessage());
         }
 
         return ResponseEntity.ok().body(response);
@@ -80,7 +79,7 @@ public class BookController {
             response.copy(bookService.delete(isbn));
             response.setMessage("Book deleted successfully!");
         } catch (BookNotFoundException e) {
-            response.setMessage("Error deleting new book: " + e.getMessage());
+            response.setMessage("Error deleting book: " + e.getMessage());
         }
 
         return ResponseEntity.ok().body(response);
