@@ -39,7 +39,7 @@ public class LoanController {
     }
 
     @PostMapping({"/add", "/add/"})
-    public ResponseEntity<LoanResponseData> addLoan(@RequestBody LoanRequestData request) {
+    public ResponseEntity<LoanResponseData> addLoan(@Valid @RequestBody LoanRequestData request) {
         LoanResponseData response = new LoanResponseData();
 
         try {
