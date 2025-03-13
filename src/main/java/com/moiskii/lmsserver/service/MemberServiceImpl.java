@@ -21,12 +21,12 @@ public class MemberServiceImpl implements MemberService{
     public Member add(Member member) throws MemberFoundException {
         // Check if username exist
         if(memberRepository.findByUsernameEqualsIgnoreCase(member.getUsername()) != null){
-            throw new MemberFoundException("Member with username " + member.getUsername() +  " already exist!");
+            throw new MemberFoundException("Member with username '" + member.getUsername() +  "' already exist!");
         }
 
         // Check if email exist
         if(memberRepository.findByEmailEqualsIgnoreCase(member.getEmail()) != null){
-            throw new MemberFoundException("Member with email " + member.getEmail() +  " already exist!");
+            throw new MemberFoundException("Member with email '" + member.getEmail() +  "' already exist!");
         }
 
         return memberRepository.saveAndFlush(member);
@@ -35,22 +35,22 @@ public class MemberServiceImpl implements MemberService{
     @Override
     public Member update(Long id, Member member) throws MemberNotFoundException, MemberFoundException {
         // If the member doesn't exist then throw error
-        Member existingMember = memberRepository.findById(id).orElseThrow(() -> new MemberNotFoundException("Member with id " + id + " not found!"));
+        Member existingMember = memberRepository.findById(id).orElseThrow(() -> new MemberNotFoundException("Member with id '" + id + "' not found!"));
 
         // Check if the username is different but exist
         if(!existingMember.getUsername().equalsIgnoreCase(member.getUsername()) && memberRepository.findByEmailEqualsIgnoreCase(member.getUsername()) != null){
-            throw new MemberFoundException("Member with username " + member.getUsername() +  " already exist!");
+            throw new MemberFoundException("Member with username '" + member.getUsername() +  "' already exist!");
         }
 
         // Check if the email is different  exist
         if(!existingMember.getEmail().equalsIgnoreCase(member.getEmail()) && memberRepository.findByEmailEqualsIgnoreCase(member.getEmail()) != null){
-            throw new MemberFoundException("Member with email " + member.getEmail() +  " already exist!");
+            throw new MemberFoundException("Member with email '" + member.getEmail() +  "' already exist!");
         }
 
         // Update the existing member object then save to database
         existingMember.setEmail(member.getEmail());
         existingMember.setUsername(member.getUsername());
-        existingMember.setPassword(member.getPassword());
+        //existingMember.setPassword(member.getPassword());
         existingMember.setFirstname(member.getFirstname());
         existingMember.setLastname(member.getLastname());
         existingMember.setAddress(member.getAddress());
@@ -70,7 +70,7 @@ public class MemberServiceImpl implements MemberService{
 
         // If the member doesn't exist then throw error
         if(memberOptional.isEmpty()){
-            throw new MemberNotFoundException("Member with id " + id + " not found!");
+            throw new MemberNotFoundException("Member with id '" + id + "' not found!");
         }
 
         memberRepository.delete(memberOptional.get());
@@ -81,7 +81,7 @@ public class MemberServiceImpl implements MemberService{
     public void delete(Member member) throws MemberNotFoundException {
         // If the member doesn't exist then throw error
         if(memberRepository.findById(member.getId()).isEmpty()){
-            throw new MemberNotFoundException("Member not found!");
+            throw new MemberNotFoundException("Member with id '" + member.getId() + "' not found!");
         }
 
         memberRepository.delete(member);
@@ -94,7 +94,7 @@ public class MemberServiceImpl implements MemberService{
 
     @Override
     public Member findMember(Long id) throws MemberNotFoundException {
-        return memberRepository.findById(id).orElseThrow(() -> new MemberNotFoundException("Member with id " + id + " not found!"));
+        return memberRepository.findById(id).orElseThrow(() -> new MemberNotFoundException("Member with id '" + id + "' not found!"));
     }
 
     @Override

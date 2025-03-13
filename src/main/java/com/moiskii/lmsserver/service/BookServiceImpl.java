@@ -55,9 +55,9 @@ public class BookServiceImpl implements BookService {
 //        }
 
         // If the book doesn't exist then throw error
-        if(bookRepository.findById(book.getIsbn()).isPresent()){
-            throw new BookNotFoundException("Book with isbn '" + book.getIsbn() + "' already exist!");
-        }
+//        if(bookRepository.findById(book.getIsbn()).isPresent()){
+//            throw new BookNotFoundException("Book with isbn '" + book.getIsbn() + "' already exist!");
+//        }
 
         return bookRepository.saveAndFlush(book);
     }
@@ -68,7 +68,7 @@ public class BookServiceImpl implements BookService {
 
         // If the book doesn't exist then throw error
         if(bookOptional.isEmpty()){
-            throw new BookNotFoundException("Book not found!");
+            throw new BookNotFoundException("Book with isbn '" + isbn + "' not found!");
         }
 
         bookRepository.delete(bookOptional.get());
@@ -79,7 +79,7 @@ public class BookServiceImpl implements BookService {
     public void delete(Book book) throws BookNotFoundException {
         // If the book doesn't exist then throw error
         if(bookRepository.findById(book.getIsbn()).isEmpty()){
-            throw new BookNotFoundException("Book not found!");
+            throw new BookNotFoundException("Book with isbn '" + book.getIsbn() + "' not found!");
         }
 
         bookRepository.delete(book);
@@ -96,7 +96,7 @@ public class BookServiceImpl implements BookService {
 
         // If the book doesn't exist then throw error
         if(bookOptional.isEmpty()){
-            throw new BookNotFoundException("Book not found!");
+            throw new BookNotFoundException("Book with isbn '" + isbn + "' not found!");
         }
 
         return bookOptional.get();
@@ -105,15 +105,5 @@ public class BookServiceImpl implements BookService {
     @Override
     public List<Book> findAll() {
         return bookRepository.findAll();
-    }
-
-    @Async
-    public CompletableFuture<String> populateFakeBooks(int amount) throws InterruptedException {
-        System.out.println("Executing async method: " + Thread.currentThread().getName());
-//        Thread.sleep(3000);  // Simulate a delay
-
-        bookRepository.saveAll(FakerUtil.createFakeBooks(amount));
-
-        return CompletableFuture.completedFuture("Task Completed");
     }
 }

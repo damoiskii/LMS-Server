@@ -15,6 +15,7 @@ public class MemberResponseData implements Serializable {
     private Long id;
     private String username;
     private String email;
+    //private String password;
     private String firstname;
     private String lastname;
     private String phoneNumber;
@@ -29,6 +30,7 @@ public class MemberResponseData implements Serializable {
         id = member.getId();
         username = member.getUsername();
         email = member.getEmail();
+        //password = member.getPassword();
         firstname = member.getFirstname();
         lastname = member.getLastname();
         phoneNumber = member.getPhoneNumber();

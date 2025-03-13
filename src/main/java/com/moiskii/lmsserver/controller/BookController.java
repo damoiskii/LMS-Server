@@ -38,11 +38,6 @@ public class BookController {
         return ResponseEntity.ok().body(response);
     }
 
-    @GetMapping({"/generate/{amount}", "/generate/{amount}/"})
-    public CompletableFuture<String> generate(@PathVariable int amount) throws InterruptedException {
-        return bookService.populateFakeBooks(amount);
-    }
-
     @PostMapping({"/add", "/add/"})
     public ResponseEntity<BookResponseData> addBook(@RequestBody BookRequestData request) {
         BookResponseData response = new BookResponseData();

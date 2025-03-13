@@ -62,6 +62,8 @@ public class MemberController {
             response.setMessage("Error updating member: " + e.getMessage());
         }
 
+        // @Valid
+
         return ResponseEntity.ok().body(response);
     }
 

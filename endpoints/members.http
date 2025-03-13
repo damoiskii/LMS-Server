@@ -1,0 +1,65 @@
+### GET: All Members
+GET http://localhost:8080/api/v1/members/
+Accept: application/json
+###
+
+
+### POST: Add Member
+POST http://localhost:8080/api/v1/members/add
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "viki.quigley",
+  "email": "lorretta.effertz@hotmail.com",
+  "password": "y2wkhnqwu6yvxx",
+  "firstname": "Valery",
+  "lastname": "Kozey",
+  "address": "44456 Stark Square, Larsonton, AR 02533",
+  "phoneNumber": "(357) 720-5271 x1471",
+  "dob": "2000-05-10T00:00:00",
+  "type": "Ordinary",
+  "allowance": "Uniform",
+  "bookLoans": [],
+  "lateFees": []
+}
+###
+
+
+### DELETE: Delete Member
+DELETE http://localhost:8080/api/v1/members/delete/59
+Accept: application/json
+###
+
+
+### DELETE: Delete All Members
+DELETE http://localhost:8080/api/v1/members/delete-all
+Accept: application/json
+###
+
+
+### PUT: Update Member
+PUT http://localhost:8080/api/v1/members/update/60
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": 60,
+  "username": "viki.quigley",
+  "email": "lorretta.effertz@hotmail.com",
+  "password": "63whg1ebxv",
+  "firstname": "John",
+  "lastname": "Tom",
+  "phoneNumber": "(357) 720-5271 x1471",
+  "address": "44456 Stark Square, Larsonton, AR 02533",
+  "type": "Ordinary",
+  "allowance": "Uniform",
+  "dob": "1952-11-13T21:59:51"
+}
+###
+
+
+### GET: Async Task
+GET http://localhost:8080/api/v1/faker/generate-members/20
+Accept: application/json
+

@@ -3,11 +3,9 @@ package com.moiskii.lmsserver.dto;
 import com.moiskii.lmsserver.model.Book;
 import com.moiskii.lmsserver.model.LateFee;
 import com.moiskii.lmsserver.model.Loan;
-import com.moiskii.lmsserver.model.Member;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 
-import java.util.Date;
 
 @Data
 public class BookRequestData {
