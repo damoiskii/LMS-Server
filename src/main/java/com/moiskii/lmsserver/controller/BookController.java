@@ -25,7 +25,7 @@ public class BookController {
         return ResponseEntity.ok().body(bookService.findAll());
     }
 
-    @GetMapping({"/{isbn}", "/{isbn}/"})
+    @GetMapping({"/find/{isbn}", "/find/{isbn}/"})
     public ResponseEntity<BookResponseData> getBook(@PathVariable String isbn) {
         BookResponseData response = new BookResponseData();
 

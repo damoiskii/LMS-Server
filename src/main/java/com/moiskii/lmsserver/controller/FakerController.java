@@ -30,4 +30,9 @@ public class FakerController {
     public CompletableFuture<String> generateMembers(@PathVariable int amount) throws InterruptedException {
         return fakerService.populateFakeMembers(amount);
     }
+
+    @GetMapping({"/generate-loans/{amount}", "/generate-loans/{amount}/"})
+    public CompletableFuture<String> generateLoans(@PathVariable int amount) throws InterruptedException {
+        return fakerService.populateFakeLoans(amount);
+    }
 }

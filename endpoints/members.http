@@ -4,6 +4,12 @@ Accept: application/json
 ###
 
 
+### GET: Get Members
+GET http://localhost:8080/api/v1/members/find/45
+Accept: application/json
+###
+
+
 ### POST: Add Member
 POST http://localhost:8080/api/v1/members/add
 Content-Type: application/json

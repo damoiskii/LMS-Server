@@ -8,4 +8,8 @@ public class BaseUtil {
     public static LocalDateTime convertDateToLocalDateTime(Date date) {
         return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
+
+    public static LocalDateTime addDaysToLocalDateTime(int days, LocalDateTime localDateTime) {
+        return localDateTime.plusDays(days);
+    }
 }

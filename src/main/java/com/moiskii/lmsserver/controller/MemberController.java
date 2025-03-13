@@ -24,7 +24,7 @@ public class MemberController {
         return ResponseEntity.ok().body(memberService.findAll());
     }
 
-    @GetMapping({"/{id}", "/{id}/"})
+    @GetMapping({"/find/{id}", "/find/{id}/"})
     public ResponseEntity<MemberResponseData> getMember(@PathVariable Long id) {
         MemberResponseData response = new MemberResponseData();
 
@@ -62,8 +62,6 @@ public class MemberController {
         } catch (MemberNotFoundException | MemberFoundException e) {
             response.setMessage("Error updating member: " + e.getMessage());
         }
-
-        // @Valid
 
         return ResponseEntity.ok().body(response);
     }
