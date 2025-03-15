@@ -3,7 +3,7 @@ package com.moiskii.lmsserver.dto;
 import com.moiskii.lmsserver.model.Book;
 import com.moiskii.lmsserver.model.Loan;
 import com.moiskii.lmsserver.model.Member;
-import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -11,16 +11,13 @@ import java.time.LocalDateTime;
 
 @Data
 public class LoanRequestData {
-    @NotBlank(message = "Book to loan is required!")
     private Book book;
-
-    @NotBlank(message = "Member for the loan is required!")
     private Member member;
 
-    @NotBlank(message = "Loan borrow date is required!")
+    @NotNull(message = "Loan borrow date is required!")
     private LocalDateTime borrowDate;
 
-    @NotBlank(message = "Loan return date is required!")
+    @NotNull(message = "Loan return date is required!")
     private LocalDateTime returnDate;
 
     public Loan build(){

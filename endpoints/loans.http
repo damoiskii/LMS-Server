@@ -5,7 +5,7 @@ Accept: application/json
 
 
 ### GET: Get Loan
-GET http://localhost:8080/api/v1/loans/find/65
+GET http://localhost:8080/api/v1/loans/find/133
 Accept: application/json
 ###
 
@@ -16,18 +16,25 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "username": "viki.quigley",
-  "email": "lorretta.effertz@hotmail.com",
-  "password": "y2wkhnqwu6yvxx",
-  "firstname": "Valery",
-  "lastname": "Kozey",
-  "address": "44456 Stark Square, Larsonton, AR 02533",
-  "phoneNumber": "(357) 720-5271 x1471",
-  "dob": "2000-05-10T00:00:00",
-  "type": "Ordinary",
-  "allowance": "Uniform",
-  "bookLoans": [],
-  "lateFees": []
+  "book": {
+    "isbn": "9791993346244",
+    "title": "Noli Me Tangere",
+    "author": "Sari Larson",
+    "status": "Available",
+    "accessionNumber": "ACC-3671-Q3548"
+  },
+  "member": {
+    "id": 79,
+    "firstname": "Alvaro",
+    "lastname": "Kertzmann",
+    "address": "Suite 999 5306 Bauch Mission, South Ludieview, AK 43762-7921",
+    "phoneNumber": "789.559.4888 x125",
+    "dob": "20-04-1933 17:39:01",
+    "type": "Ordinary",
+    "allowance": "Uniform"
+  },
+  "borrowDate": "2025-03-23T20:50:43",
+  "returnDate": "2025-04-06T20:50:43"
 }
 ###
 
@@ -45,27 +52,36 @@ Accept: application/json
 
 
 ### PUT: Update Loan
-PUT http://localhost:8080/api/v1/loans/update/60
+PUT http://localhost:8080/api/v1/loans/update/133
 Content-Type: application/json
 Accept: application/json
 
 {
-  "id": 60,
-  "username": "viki.quigley",
-  "email": "lorretta.effertz@hotmail.com",
-  "password": "63whg1ebxv",
-  "firstname": "John",
-  "lastname": "Tom",
-  "phoneNumber": "(357) 720-5271 x1471",
-  "address": "44456 Stark Square, Larsonton, AR 02533",
-  "type": "Ordinary",
-  "allowance": "Uniform",
-  "dob": "1952-11-13T21:59:51"
+  "id": 133,
+  "borrowDate": "2025-05-23T20:50:43",
+  "returnDate": "2025-06-06T20:50:43",
+  "book": {
+    "isbn": "9780720484847",
+    "title": "The Needle's Eye",
+    "author": "Moshe Bergnaum I",
+    "status": "Available",
+    "accessionNumber": "ACC-6961-R8812"
+  },
+  "member": {
+    "id": 80,
+    "firstname": "Carmelo",
+    "lastname": "Morissette",
+    "address": "922 Lynch Path, New Darren, AL 56469",
+    "phoneNumber": "(963) 475-1057 x64327",
+    "dob": "1957-06-30 10:09:16",
+    "type": "Ordinary",
+    "allowance": "Uniform"
+  }
 }
 ###
 
 
 ### GET: Async Task
-GET http://localhost:8080/api/v1/faker/generate-loans/20
+GET http://localhost:8080/api/v1/faker/generate-loans/5
 Accept: application/json
 

@@ -29,10 +29,11 @@ public class LoanServiceImpl implements LoanService {
     public Loan update(Long id, Loan loan) throws LoanNotFoundException {
         Loan existingLoan = loanRepository.findById(id).orElseThrow(() -> new LoanNotFoundException("Loan with the id '" + id + "' was not found!"));
 
-        existingLoan.setBook(loan.getBook());
-        existingLoan.setMember(loan.getMember());
         existingLoan.setBorrowDate(loan.getBorrowDate());
         existingLoan.setReturnDate(loan.getReturnDate());
+
+        if (loan.getBook() != null) existingLoan.setBook(loan.getBook());
+        if (loan.getMember() != null) existingLoan.setMember(loan.getMember());
 
         return loanRepository.saveAndFlush(existingLoan);
     }
