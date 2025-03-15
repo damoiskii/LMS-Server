@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 @RestController
 @RequestMapping("/api/v1/books")
@@ -53,7 +52,7 @@ public class BookController {
         return ResponseEntity.ok().body(response);
     }
 
-    @PutMapping({"/update/{isbn}", "/update/{isbn}/"})
+    @PutMapping(value = {"/update/{isbn}", "/update/{isbn}/"})
     public ResponseEntity<BookResponseData> updateBook(@PathVariable String isbn, @Valid @RequestBody BookRequestData request) {
         BookResponseData response = new BookResponseData();
 

@@ -80,6 +80,8 @@ public class FakerUtil {
         Faker faker = new Faker();
 
         for(int i = 0; i < amount; i++){
+            if(i > books.size()) break;
+
             Loan loan = new Loan();
 
             // Generate a random future date within the next 30 days

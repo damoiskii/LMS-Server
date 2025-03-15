@@ -1,6 +1,9 @@
 package com.moiskii.lmsserver.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -30,8 +33,9 @@ public class Member extends User {
     private String phoneNumber;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
-    @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonDeserialize(using = LocalDateTimeDeserializer.class)
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name = "dob", nullable = false)
     private LocalDateTime dob;
 
@@ -41,10 +45,12 @@ public class Member extends User {
     @Column(name = "allowance", nullable = false)
     private String allowance;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "member", fetch = FetchType.LAZY)
     @OrderBy("borrowDate DESC")
     private Set<Loan> bookLoans;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "member", fetch = FetchType.LAZY)
     @OrderBy("createdOn DESC")
     private Set<LateFee> lateFees;

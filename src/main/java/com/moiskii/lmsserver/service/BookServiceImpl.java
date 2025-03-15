@@ -35,29 +35,24 @@ public class BookServiceImpl implements BookService {
     @Override
     public Book update(String isbn, Book book) throws BookNotFoundException {
         // If the book doesn't exist then throw error
-        // Book existingBook = bookRepository.findById(isbn).orElseThrow(() -> new BookNotFoundException("Book with ISBN " + isbn + " not found"));
+         Book existingBook = bookRepository.findById(isbn).orElseThrow(() -> new BookNotFoundException("Book with isbn '" + isbn + "' not found!"));
 
-//        existingBook.setTitle(book.getTitle());
-//        existingBook.setAuthor(book.getAuthor());
-//        existingBook.setStatus(book.getStatus());
-//        existingBook.setAccessionNumber(book.getAccessionNumber());
-//
-//        if (book.getLoan() != null) {
-//            Loan loan = book.getLoan();
-//            loan.setBook(existingBook);
-//            existingBook.setLoan(loan);
-//        }
-//
-//        if (book.getLateFee() != null) {
-//            LateFee lateFee = book.getLateFee();
-//            lateFee.setBook(existingBook);
-//            existingBook.setLateFee(lateFee);
-//        }
+        existingBook.setTitle(book.getTitle());
+        existingBook.setAuthor(book.getAuthor());
+        existingBook.setStatus(book.getStatus());
+        existingBook.setAccessionNumber(book.getAccessionNumber());
 
-        // If the book doesn't exist then throw error
-//        if(bookRepository.findById(book.getIsbn()).isPresent()){
-//            throw new BookNotFoundException("Book with isbn '" + book.getIsbn() + "' already exist!");
-//        }
+        if (book.getLoan() != null) {
+            Loan loan = book.getLoan();
+            loan.setBook(existingBook);
+            existingBook.setLoan(loan);
+        }
+
+        if (book.getLateFee() != null) {
+            LateFee lateFee = book.getLateFee();
+            lateFee.setBook(existingBook);
+            existingBook.setLateFee(lateFee);
+        }
 
         return bookRepository.saveAndFlush(book);
     }

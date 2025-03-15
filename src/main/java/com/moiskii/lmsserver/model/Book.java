@@ -1,12 +1,16 @@
 package com.moiskii.lmsserver.model;
 
 
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.*;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
+@ToString
+@EqualsAndHashCode(exclude = {"loan"})
 @Entity
 @Table(name = "books")
 public class Book {
@@ -26,9 +30,11 @@ public class Book {
     @Column(name = "accession_number", nullable = false, unique = true)
     private String accessionNumber;
 
-    @OneToOne(mappedBy = "book", cascade = {CascadeType.ALL})
+    @JsonIgnore
+    @OneToOne(mappedBy = "book", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private Loan loan;
 
-    @OneToOne(mappedBy = "book", cascade = {CascadeType.ALL})
+    @JsonIgnore
+    @OneToOne(mappedBy = "book", cascade = {CascadeType.ALL}, orphanRemoval = true)
     private LateFee lateFee;
 }

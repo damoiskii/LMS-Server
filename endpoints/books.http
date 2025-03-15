@@ -5,7 +5,7 @@ Accept: application/json
 
 
 ### GET: Get Book
-GET http://localhost:8080/api/v1/books/find/45
+GET http://localhost:8080/api/v1/books/find/9791979963373
 Accept: application/json
 ###
 
@@ -16,7 +16,7 @@ Content-Type: application/json
 Accept: application/json
 
 {
-  "isbn": "111-236-857",
+  "isbn": "9791979963373",
   "accessionNumber": "221254",
   "title": "Today is Good!",
   "author": "John Tom",
@@ -37,27 +37,20 @@ Accept: application/json
 ###
 
 
-### PUT: Update Book
-PUT http://localhost:8080/api/v1/books/update/9791964934357
+### PUT: Update Book --> 2000-05-10T00:00:00
+PUT http://localhost:8080/api/v1/books/update/9791979963373
 Content-Type: application/json
 Accept: application/json
 
 {
-  "isbn": "9791964934357",
+  "isbn": "9791979963373",
   "title": "Edna O'Brien",
   "author": "Thaddeus Moen",
   "status": "Available",
-  "accessionNumber": "ACC-0003-O1276",
-  "loan": {
-    "id": 1,
-    "borrowDate": "2000-05-10T00:00:00",
-    "returnDate": "2000-05-10T00:00:00",
-    "member": null,
-    "book": null
-  },
-  "lateFee": null
+  "accessionNumber": "ACC-0003-O1276"
 }
 ###
+
 
 
 ### GET: Async Task
