@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -26,7 +26,7 @@ public class LateFee {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
     @DateTimeFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     @Column(name = "created_on", nullable = false)
-    private Date createdOn;
+    private LocalDateTime createdOn;
 
     @JsonIgnore  // Prevent circular reference
     @OneToOne(cascade = {CascadeType.ALL}) // {CascadeType.MERGE}

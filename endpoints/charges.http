@@ -1,0 +1,71 @@
+### GET: All Late Fees
+GET http://localhost:8080/api/v1/late-fees/
+Accept: application/json
+###
+
+
+### GET: Get Late Fee
+GET http://localhost:8080/api/v1/late-fees/find/65
+Accept: application/json
+###
+
+
+### POST: Add Late Fee
+POST http://localhost:8080/api/v1/late-fees/add
+Content-Type: application/json
+Accept: application/json
+
+{
+  "username": "viki.quigley",
+  "email": "lorretta.effertz@hotmail.com",
+  "password": "y2wkhnqwu6yvxx",
+  "firstname": "Valery",
+  "lastname": "Kozey",
+  "address": "44456 Stark Square, Larsonton, AR 02533",
+  "phoneNumber": "(357) 720-5271 x1471",
+  "dob": "2000-05-10T00:00:00",
+  "type": "Ordinary",
+  "allowance": "Uniform",
+  "bookLoans": [],
+  "lateFees": []
+}
+###
+
+
+### DELETE: Delete Late Fee
+DELETE http://localhost:8080/api/v1/late-fees/delete/22
+Accept: application/json
+###
+
+
+### DELETE: Delete All Late Fees
+DELETE http://localhost:8080/api/v1/late-fees/delete-all
+Accept: application/json
+###
+
+
+### PUT: Update Late Fee
+PUT http://localhost:8080/api/v1/late-fees/update/60
+Content-Type: application/json
+Accept: application/json
+
+{
+  "id": 60,
+  "username": "viki.quigley",
+  "email": "lorretta.effertz@hotmail.com",
+  "password": "63whg1ebxv",
+  "firstname": "John",
+  "lastname": "Tom",
+  "phoneNumber": "(357) 720-5271 x1471",
+  "address": "44456 Stark Square, Larsonton, AR 02533",
+  "type": "Ordinary",
+  "allowance": "Uniform",
+  "dob": "1952-11-13T21:59:51"
+}
+###
+
+
+### GET: Async Task
+GET http://localhost:8080/api/v1/faker/generate-late-fees/20
+Accept: application/json
+
